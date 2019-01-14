@@ -24,6 +24,9 @@ public class SimpleController {
 		return simpleService.findAllTeachers();
 	}
 	
+//	@PostMapping("/teachers")
+//	public 
+	
 	@GetMapping("/students")
 	public List<Student> findAllStudents() {
 		return simpleService.findAllStudents();
@@ -33,4 +36,7 @@ public class SimpleController {
 	public List<Classroom> findAllClassrooms() {
 		return simpleService.findAllClassrooms();
 	}
+	
+//	@PostMapping("/")
+	
 }

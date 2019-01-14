@@ -21,7 +21,7 @@ public class Teacher {
 	private String name;
 
 	@NotNull
-	private Date dateOfBirth;
+	private Date birthday;
 
 	@NotNull
 	private String telephone;
@@ -33,7 +33,7 @@ public class Teacher {
 	private String address;
 
 	@NotNull
-	private String niff;
+	private String nif;
 
 	@NotNull
 	private String niss;
@@ -42,21 +42,22 @@ public class Teacher {
 	private String iban;
 
 	@NotNull
+//	@Column(name ="LectiveYear")
 	private Integer lectiveYear;
 
 	public Teacher() {
 
 	}
 
-	public Teacher(@NotNull String name, @NotNull Date dateOfBirth, @NotNull String telephone, @NotNull String email,
+	public Teacher(@NotNull String name, @NotNull Date birthday, @NotNull String telephone, @NotNull String email,
 			@NotNull String address, @NotNull String niff, @NotNull String niss, @NotNull String iban,
 			@NotNull Integer lectiveYear) {
 		this.name = name;
-		this.dateOfBirth = dateOfBirth;
+		this.birthday = birthday;
 		this.telephone = telephone;
 		this.email = email;
 		this.address = address;
-		this.niff = niff;
+		this.nif = niff;
 		this.niss = niss;
 		this.iban = iban;
 		this.lectiveYear = lectiveYear;
@@ -79,11 +80,11 @@ public class Teacher {
 	}
 
 	public Date getDateOfBirth() {
-		return dateOfBirth;
+		return birthday;
 	}
 
 	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+		this.birthday = dateOfBirth;
 	}
 
 	public String getTelephone() {
@@ -111,11 +112,11 @@ public class Teacher {
 	}
 
 	public String getNiff() {
-		return niff;
+		return nif;
 	}
 
 	public void setNiff(String niff) {
-		this.niff = niff;
+		this.nif = niff;
 	}
 
 	public String getNiss() {
@@ -144,8 +145,8 @@ public class Teacher {
 
 	@Override
 	public String toString() {
-		return "Teacher [id=" + id + ", name=" + name + ", dateOfBirth=" + dateOfBirth + ", telephone=" + telephone
-				+ ", email=" + email + ", address=" + address + ", niff=" + niff + ", niss=" + niss + ", iban=" + iban
+		return "Teacher [id=" + id + ", name=" + name + ", dateOfBirth=" + birthday + ", telephone=" + telephone
+				+ ", email=" + email + ", address=" + address + ", niff=" + nif + ", niss=" + niss + ", iban=" + iban
 				+ ", lectiveYear=" + lectiveYear + "]";
 	}
 	

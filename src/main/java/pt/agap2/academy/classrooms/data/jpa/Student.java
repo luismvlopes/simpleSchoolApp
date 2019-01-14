@@ -21,7 +21,9 @@ public class Student {
 	private String name;
 
 	@NotNull
-	private Date dateOfBirth;
+//	@Column(name = "birthday")
+	private Date birthday
+	;
 
 	@NotNull
 	private String telephone;
@@ -33,23 +35,24 @@ public class Student {
 	private String address;
 
 	@NotNull
-	private String niff;
+	private String nif;
 
 	@NotNull
+//	@Column(name ="LectiveYear")
 	private Integer lectiveYear;
 
 	public Student() {
 
 	}
 
-	public Student(@NotNull String name, @NotNull Date dateOfBirth, @NotNull String telephone, @NotNull String email,
+	public Student(@NotNull String name, @NotNull Date birthday, @NotNull String telephone, @NotNull String email,
 			@NotNull String address, @NotNull String niff, @NotNull Integer lectiveYear) {
 		this.name = name;
-		this.dateOfBirth = dateOfBirth;
+		this.birthday = birthday;
 		this.telephone = telephone;
 		this.email = email;
 		this.address = address;
-		this.niff = niff;
+		this.nif = niff;
 		this.lectiveYear = lectiveYear;
 	}
 
@@ -70,11 +73,11 @@ public class Student {
 	}
 
 	public Date getDateOfBirth() {
-		return dateOfBirth;
+		return birthday;
 	}
 
 	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+		this.birthday = dateOfBirth;
 	}
 
 	public String getTelephone() {
@@ -102,11 +105,11 @@ public class Student {
 	}
 
 	public String getNiff() {
-		return niff;
+		return nif;
 	}
 
 	public void setNiff(String niff) {
-		this.niff = niff;
+		this.nif = niff;
 	}
 
 	public int getLectiveYear() {
@@ -119,8 +122,8 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", dateOfBirth=" + dateOfBirth + ", telephone=" + telephone
-				+ ", email=" + email + ", address=" + address + ", niff=" + niff + ", lectiveYear=" + lectiveYear + "]";
+		return "Student [id=" + id + ", name=" + name + ", dateOfBirth=" + birthday + ", telephone=" + telephone
+				+ ", email=" + email + ", address=" + address + ", niff=" + nif + ", lectiveYear=" + lectiveYear + "]";
 	}
 
 }
