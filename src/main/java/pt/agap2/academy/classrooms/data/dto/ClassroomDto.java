@@ -1,17 +1,11 @@
-package pt.agap2.academy.classrooms.data.jpa;
+package pt.agap2.academy.classrooms.data.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.beans.BeanUtils;
 
-@Entity
-@Table(name = "classrooms")
-public class Classroom {
+import pt.agap2.academy.classrooms.data.jpa.Classroom;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ClassroomDto {
+
 	private Integer id;
 
 	private String shift;
@@ -20,14 +14,12 @@ public class Classroom {
 
 	private Integer lectiveYear;
 
-	public Classroom() {
+	public ClassroomDto() {
 
 	}
 
-	public Classroom(String shift, String subject, Integer lectiveYear) {
-		this.shift = shift;
-		this.subject = subject;
-		this.lectiveYear = lectiveYear;
+	public ClassroomDto(Classroom classroom) {
+		BeanUtils.copyProperties(classroom, this);
 	}
 
 	public Integer getId() {
@@ -62,4 +54,5 @@ public class Classroom {
 		this.lectiveYear = lectiveYear;
 	}
 
+	
 }
