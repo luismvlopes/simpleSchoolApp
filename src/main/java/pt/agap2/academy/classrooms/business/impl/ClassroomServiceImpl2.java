@@ -1,25 +1,31 @@
 package pt.agap2.academy.classrooms.business.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import pt.agap2.academy.classrooms.business.BaseService;
 import pt.agap2.academy.classrooms.business.BusinessResult;
+import pt.agap2.academy.classrooms.business.exceptions.BusinessException;
 import pt.agap2.academy.classrooms.business.interfaces.ClassroomService;
 import pt.agap2.academy.classrooms.data.dto.ClassroomDto;
 import pt.agap2.academy.classrooms.data.jpa.Classroom;
 import pt.agap2.academy.classrooms.dataaccess.jpa.ClassroomDao;
 
+@Service
 public class ClassroomServiceImpl2 extends BaseService implements ClassroomService {
 
 	@Autowired
 	private ClassroomDao classroomDao;
 
 	@Override
+	@Transactional
 	public BusinessResult<List<ClassroomDto>> findAllClassrooms() {
 		return executeOperation(() -> {
 
@@ -31,9 +37,23 @@ public class ClassroomServiceImpl2 extends BaseService implements ClassroomServi
 	}
 
 	@Override
-	public BusinessResult<ClassroomDto> saveClassroom(@Valid Classroom classroom) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public BusinessResult<ClassroomDto> saveClassroom(@Valid ClassroomDto classroomDto) {
+		return executeOperation(() -> {
+
+			Optional<Classroom> newClassroomOpt = classroomDao.findById(classroomDto.getId());
+
+			if (newClassroomOpt.isPresent()) {
+				System.out.println("Classroom already exists");
+				throw new BusinessException();
+			}
+			
+			Classroom c = classroomDao.save(classroomDto.toEntity());
+
+			return new ClassroomDto(c);
+			
+		});
+
 	}
 
 }

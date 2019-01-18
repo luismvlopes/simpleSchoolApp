@@ -22,6 +22,13 @@ public class ClassroomDto {
 		BeanUtils.copyProperties(classroom, this);
 	}
 
+	public Classroom toEntity() {
+		Classroom classroom = new Classroom();
+		BeanUtils.copyProperties(this, classroom);
+		
+		return classroom;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -54,5 +61,4 @@ public class ClassroomDto {
 		this.lectiveYear = lectiveYear;
 	}
 
-	
 }

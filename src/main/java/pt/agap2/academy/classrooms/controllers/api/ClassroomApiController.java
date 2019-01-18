@@ -3,6 +3,7 @@ package pt.agap2.academy.classrooms.controllers.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,30 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import pt.agap2.academy.classrooms.business.interfaces.ClassroomService;
-import pt.agap2.academy.classrooms.data.jpa.Classroom;
+import pt.agap2.academy.classrooms.data.dto.ClassroomDto;
 
 @RestController
 @RequestMapping("/api")
-public class ClassroomApiController {
+public class ClassroomApiController extends BaseApiController {
 
 	@Autowired
 	private ClassroomService classroomService;
-	
+
 	@GetMapping("/classrooms")
-	public List<Classroom> findAllclassroom() {
-		return classroomService.findAllClassrooms();
+	public ResponseEntity<ApiResult<List<ClassroomDto>>> findAllclassroom() {
+
+		return generateResponseEntityFromBusinessResult(classroomService.findAllClassrooms());
+
 	}
-	
+
 	@PostMapping("/classrooms")
-	public void saveClassroom(@RequestBody Classroom classroom) {
-		classroomService.saveClassroom(classroom);
+	public ResponseEntity<ApiResult<ClassroomDto>> saveClassroom(@RequestBody ClassroomDto classroomDto) {
+
+		return generateResponseEntityFromBusinessResult(classroomService.saveClassroom(classroomDto));
+
 	}
-	
+
 }
-
-
-	
-
-	
-
-	

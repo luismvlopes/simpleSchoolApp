@@ -44,7 +44,7 @@ public class BusinessResult<T> {
 		this.exception = exception;
 	}
 
-	public Boolean getSuccessful() {
+	public Boolean isSuccessful() {
 		return successful;
 	}
 
