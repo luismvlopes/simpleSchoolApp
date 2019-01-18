@@ -1,7 +1,6 @@
 package pt.agap2.academy.classrooms.business.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
@@ -41,10 +40,18 @@ public class ClassroomServiceImpl2 extends BaseService implements ClassroomServi
 	public BusinessResult<ClassroomDto> saveClassroom(@Valid ClassroomDto classroomDto) {
 		return executeOperation(() -> {
 
-			Optional<Classroom> newClassroomOpt = classroomDao.findById(classroomDto.getId());
-
-			if (newClassroomOpt.isPresent()) {
-				System.out.println("Classroom already exists");
+			String subject = classroomDto.getSubject();
+			System.out.println("Subject: " + subject);
+			
+			String shift = classroomDto.getShift();
+			System.out.println("Shift: " + shift);
+			
+			Integer year = classroomDto.getLectiveYear();
+			System.out.println("Year: " + year);
+			
+			Classroom classroomOpt = classroomDao.findBySubjectShiftAndYear(subject /*, shift, year*/);
+			
+			if(classroomOpt != null)  {
 				throw new BusinessException();
 			}
 			
