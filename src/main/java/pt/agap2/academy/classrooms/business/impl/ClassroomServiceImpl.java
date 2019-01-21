@@ -41,15 +41,10 @@ public class ClassroomServiceImpl extends BaseService implements ClassroomServic
 		return executeOperation(() -> {
 
 			String subject = classroomDto.getSubject();
-			System.out.println("Subject: " + subject);
-			
 			String shift = classroomDto.getShift();
-			System.out.println("Shift: " + shift);
-			
 			Integer year = classroomDto.getLectiveYear();
-			System.out.println("Year: " + year);
 			
-			Classroom classroomOpt = classroomDao.findBySubjectShiftAndYear(subject /*, shift, year*/);
+			Classroom classroomOpt = classroomDao.findBySubjectShiftAndYear(subject, shift , year);
 			
 			if(classroomOpt != null)  {
 				throw new BusinessException();

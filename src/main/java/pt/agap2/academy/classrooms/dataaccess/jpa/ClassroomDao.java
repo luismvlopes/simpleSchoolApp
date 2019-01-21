@@ -11,7 +11,7 @@ import pt.agap2.academy.classrooms.data.jpa.Classroom;
 public interface ClassroomDao extends JpaRepository<Classroom, Integer> {
 
 	@Query("SELECT cr FROM Classroom cr " + 
-	"WHERE cr.subject=:subjectName " /*AND cr.shift =:shiftName AND cr.year =:yearNumber"*/)
-	public Classroom findBySubjectShiftAndYear(@Param(value = "subjectName") String subject/*,
-			@Param(value = "shiftName") String shift, @Param(value = "yearNumber") Integer year*/);
+	"WHERE cr.subject=:subjectName  AND cr.shift =:shiftName AND cr.lectiveYear =:yearNumber")
+	public Classroom findBySubjectShiftAndYear(@Param(value = "subjectName") String subject,
+			@Param(value = "shiftName") String shift, @Param(value = "yearNumber") Integer year);
 }
