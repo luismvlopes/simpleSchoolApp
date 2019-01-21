@@ -1,4 +1,4 @@
-package pt.agap2.academy.classrooms.business.impl;
+/* package pt.agap2.academy.classrooms.business.impl;
 
 import java.util.List;
 
@@ -26,3 +26,5 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 }
+
+*/

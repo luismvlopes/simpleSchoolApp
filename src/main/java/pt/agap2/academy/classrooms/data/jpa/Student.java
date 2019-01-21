@@ -21,9 +21,7 @@ public class Student {
 	private String name;
 
 	@NotNull
-//	@Column(name = "birthday")
-	private Date birthday
-	;
+	private Date birthday;
 
 	@NotNull
 	private String telephone;
@@ -38,7 +36,6 @@ public class Student {
 	private String nif;
 
 	@NotNull
-//	@Column(name ="LectiveYear")
 	private Integer lectiveYear;
 
 	public Student() {

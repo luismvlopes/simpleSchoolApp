@@ -1,4 +1,4 @@
-package pt.agap2.academy.classrooms.controllers.api;
+/* package pt.agap2.academy.classrooms.controllers.api;
 
 import java.util.List;
 
@@ -30,3 +30,5 @@ public class StudentApiController {
 	}
 
 }
+
+*/

@@ -2,13 +2,15 @@ package pt.agap2.academy.classrooms.business.interfaces;
 
 import java.util.List;
 
+import pt.agap2.academy.classrooms.business.BusinessResult;
+import pt.agap2.academy.classrooms.data.dto.StudentDto;
 import pt.agap2.academy.classrooms.data.jpa.Student;
 
 public interface StudentService {
 
-	public List<Student> findAllStudents();
+	BusinessResult<List<StudentDto>> findAllStudents();
 	
-	public void saveStudent(Student student);
+	BusinessResult<StudentDto> saveStudent(Student student);
 	
 	
 	
