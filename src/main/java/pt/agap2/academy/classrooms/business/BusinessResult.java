@@ -21,13 +21,6 @@ public class BusinessResult<T> {
 		this.successful = false;
 	}
 	
-
-	public BusinessResult(T result, BusinessException exception, Boolean successful) {
-		this.result = result;
-		this.exception = exception;
-		this.successful = successful;
-	}
-
 	public T getResult() {
 		return result;
 	}

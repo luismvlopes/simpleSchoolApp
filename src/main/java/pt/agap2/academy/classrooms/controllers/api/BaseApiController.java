@@ -11,11 +11,11 @@ public class BaseApiController {
 
 	public <T> ResponseEntity<ApiResult<T>> generateResponseEntityFromBusinessResult(BusinessResult<T> businessResult) {
 
-		if(!businessResult.isSuccessful()) {
+		if (!businessResult.isSuccessful()) {
 			generateResponseEntityWithError(businessResult.getException());
 		}
 		return generateSuccessfulResponseEntity(businessResult.getResult());
-		
+
 	}
 
 	public <T> ResponseEntity<ApiResult<T>> generateSuccessfulResponseEntity(T payload) {
@@ -23,16 +23,16 @@ public class BaseApiController {
 	}
 
 	public <T> ResponseEntity<ApiResult<T>> generateResponseEntityWithError(BusinessException bex) {
-		
+
 		if (bex == null) {
 			System.out.println("NUll " + bex.getMessage());
 			bex = new BusinessException();
 		}
-		
+
 		ApiResult<T> result = new ApiResult<>();
 		result.addError(bex.getMessage());
 		HttpStatus httpStatus = ApiControllerHelper.generaeHttpStatusCodeFromErrorCode(bex.getErrorCode());
-		
+
 		return new ResponseEntity<>(result, httpStatus);
 	}
 }

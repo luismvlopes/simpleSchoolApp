@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pt.agap2.academy.classrooms.business.BaseService;
 import pt.agap2.academy.classrooms.business.BusinessResult;
-import pt.agap2.academy.classrooms.business.exceptions.BusinessException;
+import pt.agap2.academy.classrooms.business.exceptions.ClassroomAlreadyExistsException;
 import pt.agap2.academy.classrooms.business.interfaces.ClassroomService;
 import pt.agap2.academy.classrooms.data.dto.ClassroomDto;
 import pt.agap2.academy.classrooms.data.jpa.Classroom;
@@ -47,7 +47,7 @@ public class ClassroomServiceImpl extends BaseService implements ClassroomServic
 			Classroom classroomOpt = classroomDao.findBySubjectShiftAndYear(subject, shift , year);
 			
 			if(classroomOpt != null)  {
-				throw new BusinessException();
+				throw new ClassroomAlreadyExistsException();
 			}
 			
 			Classroom c = classroomDao.save(classroomDto.toEntity());

@@ -14,6 +14,8 @@ public class BaseService {
 			ex.printStackTrace();
 			return new BusinessResult<>(ex);
 
+		} catch (Exception e) {
+			return new BusinessResult<>(new BusinessException(e));
 		}
 
 	}
