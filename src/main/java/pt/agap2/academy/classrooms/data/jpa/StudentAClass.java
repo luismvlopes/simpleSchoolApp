@@ -9,8 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "students_classrooms")
-public class StudentClassroom {
+@Table(name = "students_classes")
+public class StudentAClass {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,16 +21,16 @@ public class StudentClassroom {
 	private Student student;
 
 	@ManyToOne
-	@JoinColumn(name = "ClassroomId")
-	private Classroom classroom;
+	@JoinColumn(name = "ClassId")
+	private AClass aClass;
 
-	public StudentClassroom() {
+	public StudentAClass() {
 
 	}
 
-	public StudentClassroom(Student student, Classroom classroom) {
-		this.student = student;
-		this.classroom = classroom;
+	@Override
+	public String toString() {
+		return "StudentClass [id=" + id + ", student=" + student + ", aClass=" + aClass + "]";
 	}
 
 	public Integer getId() {
@@ -49,12 +49,12 @@ public class StudentClassroom {
 		this.student = student;
 	}
 
-	public Classroom getClassroom() {
-		return classroom;
+	public AClass getaClass() {
+		return aClass;
 	}
 
-	public void setClassroom(Classroom classroom) {
-		this.classroom = classroom;
+	public void setaClass(AClass aClass) {
+		this.aClass = aClass;
 	}
 
 }

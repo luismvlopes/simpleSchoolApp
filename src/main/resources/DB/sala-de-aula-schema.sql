@@ -65,12 +65,12 @@ CREATE TABLE teachers(
 
 CREATE TABLE classes(
 	Id						INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    Shift					VARCHAR(255),
-    Subject 				VARCHAR(255),
-    Lective_Year			VARCHAR(10),
-    TeacherId				INT,
+    Shift					VARCHAR(255) NOT NULL,
+    Subject 				VARCHAR(255) NOT NULL,
+    Lective_Year			VARCHAR(10) NOT NULL,
+    TeacherId				INT NOT NULL,
     
-    CONSTRAINT teacher_per_shift UNIQUE KEY (Shift, Subject, TeacherId),
+    CONSTRAINT teacher_per_shift UNIQUE KEY (Shift, Subject, Lective_Year, TeacherId),
     FOREIGN KEY(TeacherId) REFERENCES teachers(Id)
 
 );

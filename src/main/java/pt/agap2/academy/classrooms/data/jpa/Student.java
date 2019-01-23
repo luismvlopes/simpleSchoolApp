@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -29,8 +31,9 @@ public class Student {
 	@NotNull
 	private String email;
 
-	@NotNull
-	private String address;
+	@ManyToOne
+	@JoinColumn(name = "StudentAddressId")
+	private StudentAddress studentAddress;
 
 	@NotNull
 	private String nif;
@@ -43,12 +46,12 @@ public class Student {
 	}
 
 	public Student(@NotNull String name, @NotNull Date birthday, @NotNull String telephone, @NotNull String email,
-			@NotNull String address, @NotNull String niff, @NotNull Integer lectiveYear) {
+			StudentAddress studentAddress, @NotNull String niff, @NotNull Integer lectiveYear) {
 		this.name = name;
 		this.birthday = birthday;
 		this.telephone = telephone;
 		this.email = email;
-		this.address = address;
+		this.studentAddress = studentAddress;
 		this.nif = niff;
 		this.lectiveYear = lectiveYear;
 	}
@@ -93,12 +96,12 @@ public class Student {
 		this.email = email;
 	}
 
-	public String getAddress() {
-		return address;
+	public StudentAddress getAddress() {
+		return studentAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress(StudentAddress studentAddress) {
+		this.studentAddress = studentAddress;
 	}
 
 	public String getNiff() {
@@ -119,8 +122,9 @@ public class Student {
 
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", name=" + name + ", dateOfBirth=" + birthday + ", telephone=" + telephone
-				+ ", email=" + email + ", address=" + address + ", niff=" + nif + ", lectiveYear=" + lectiveYear + "]";
+		return "Student [id=" + id + ", name=" + name + ", birthday=" + birthday + ", telephone=" + telephone
+				+ ", email=" + email + ", studentAddress=" + studentAddress + ", nif=" + nif + ", lectiveYear="
+				+ lectiveYear + "]";
 	}
 
 }

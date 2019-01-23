@@ -5,29 +5,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "classrooms")
-public class Classroom {
+@Table(name = "classes")
+public class AClass {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@NotNull
 	private String shift;
 
+	@NotNull
 	private String subject;
 
-	private Integer lectiveYear;
+	@NotNull
+	private String lectiveYear;
 
-	public Classroom() {
+//	@ManyToOne
+//	@JoinColumn(name = "TeacherId")
+//	private Teacher teacher;
 
-	}
+	public AClass() {
 
-	public Classroom(String shift, String subject, Integer lectiveYear) {
-		this.shift = shift;
-		this.subject = subject;
-		this.lectiveYear = lectiveYear;
 	}
 
 	public Integer getId() {
@@ -54,12 +56,22 @@ public class Classroom {
 		this.subject = subject;
 	}
 
-	public Integer getLectiveYear() {
+	public String getLectiveYear() {
 		return lectiveYear;
 	}
 
-	public void setLectiveYear(Integer lectiveYear) {
+	public void setLectiveYear(String lectiveYear) {
 		this.lectiveYear = lectiveYear;
 	}
+
+//	public Teacher getTeacher() {
+//		return teacher;
+//	}
+//
+//	public void setTeacher(Teacher teacher) {
+//		this.teacher = teacher;
+//	}
+
+	
 
 }

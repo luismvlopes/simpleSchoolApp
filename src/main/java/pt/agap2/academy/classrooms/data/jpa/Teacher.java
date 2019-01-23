@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -29,8 +31,9 @@ public class Teacher {
 	@NotNull
 	private String email;
 
-	@NotNull
-	private String address;
+	@ManyToOne
+	@JoinColumn(name = "TeacherAddressId")
+	private TeacherAddress teacherAddress;
 
 	@NotNull
 	private String nif;
@@ -41,26 +44,27 @@ public class Teacher {
 	@NotNull
 	private String iban;
 
-	@NotNull
-//	@Column(name ="LectiveYear")
-	private Integer lectiveYear;
-
 	public Teacher() {
 
 	}
 
 	public Teacher(@NotNull String name, @NotNull Date birthday, @NotNull String telephone, @NotNull String email,
-			@NotNull String address, @NotNull String niff, @NotNull String niss, @NotNull String iban,
-			@NotNull Integer lectiveYear) {
+			TeacherAddress teacherAddress, @NotNull String niff, @NotNull String niss, @NotNull String iban) {
 		this.name = name;
 		this.birthday = birthday;
 		this.telephone = telephone;
 		this.email = email;
-		this.address = address;
+		this.teacherAddress = teacherAddress;
 		this.nif = niff;
 		this.niss = niss;
 		this.iban = iban;
-		this.lectiveYear = lectiveYear;
+	}
+
+	@Override
+	public String toString() {
+		return "Teacher [id=" + id + ", name=" + name + ", birthday=" + birthday + ", telephone=" + telephone
+				+ ", email=" + email + ", teacherAddress=" + teacherAddress + ", nif=" + nif + ", niss=" + niss
+				+ ", iban=" + iban + "]";
 	}
 
 	public Integer getId() {
@@ -103,12 +107,12 @@ public class Teacher {
 		this.email = email;
 	}
 
-	public String getAddress() {
-		return address;
+	public TeacherAddress getTeacherAddress() {
+		return teacherAddress;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setTeacherAddress(TeacherAddress teacherAddress) {
+		this.teacherAddress = teacherAddress;
 	}
 
 	public String getNiff() {
@@ -134,22 +138,5 @@ public class Teacher {
 	public void setIban(String iban) {
 		this.iban = iban;
 	}
-
-	public Integer getLectiveYear() {
-		return lectiveYear;
-	}
-
-	public void setLectiveYear(Integer lectiveYear) {
-		this.lectiveYear = lectiveYear;
-	}
-
-	@Override
-	public String toString() {
-		return "Teacher [id=" + id + ", name=" + name + ", dateOfBirth=" + birthday + ", telephone=" + telephone
-				+ ", email=" + email + ", address=" + address + ", niff=" + nif + ", niss=" + niss + ", iban=" + iban
-				+ ", lectiveYear=" + lectiveYear + "]";
-	}
-	
-	
 
 }
