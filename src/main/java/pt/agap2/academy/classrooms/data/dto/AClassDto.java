@@ -15,6 +15,8 @@ public class AClassDto {
 	private String lectiveYear;
 
 	private Integer teacherId;
+	
+	private String teacherName;
 
 	public AClassDto() {
 	}
@@ -75,5 +77,15 @@ public class AClassDto {
 	public void setTeacherId(Integer teacherId) {
 		this.teacherId = teacherId;
 	}
+
+	public String getTeacherName() {
+		return teacherName;
+	}
+
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
+	}
+	
+	
 
 }

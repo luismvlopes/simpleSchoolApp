@@ -19,7 +19,7 @@ public class AClassApiController extends BaseApiController {
 	private AClassService aClassService;
 
 	@GetMapping("/classes")
-	public ResponseEntity<ApiResult<List<AClassDto>>> findAllclassroom() {
+	public ResponseEntity<ApiResult<List<AClassDto>>> findAllclasses() {
 
 		return generateResponseEntityFromBusinessResult(aClassService.findAllClasses());
 

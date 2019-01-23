@@ -1,9 +1,12 @@
 package pt.agap2.academy.classrooms.data.jpa;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -22,11 +25,12 @@ public class AClass {
 	private String subject;
 
 	@NotNull
+	@Column(name = "Lective_Year")
 	private String lectiveYear;
 
-//	@ManyToOne
-//	@JoinColumn(name = "TeacherId")
-//	private Teacher teacher;
+	@ManyToOne
+	@JoinColumn(name = "TeacherId")
+	private Teacher teacher;
 
 	public AClass() {
 
@@ -64,13 +68,13 @@ public class AClass {
 		this.lectiveYear = lectiveYear;
 	}
 
-//	public Teacher getTeacher() {
-//		return teacher;
-//	}
-//
-//	public void setTeacher(Teacher teacher) {
-//		this.teacher = teacher;
-//	}
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
 
 	
 

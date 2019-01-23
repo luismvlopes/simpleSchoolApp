@@ -3,11 +3,14 @@ package pt.agap2.academy.classrooms.business.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pt.agap2.academy.classrooms.business.BaseService;
 import pt.agap2.academy.classrooms.business.BusinessResult;
+import pt.agap2.academy.classrooms.business.exceptions.ClassroomAlreadyExistsException;
 import pt.agap2.academy.classrooms.business.interfaces.AClassService;
 import pt.agap2.academy.classrooms.data.dto.AClassDto;
 import pt.agap2.academy.classrooms.data.jpa.AClass;
@@ -29,25 +32,36 @@ public class AClassServiceImpl extends BaseService implements AClassService {
 		});
 	}
 
-//	@Override
-//	public BusinessResult<AClassDto> saveAClass(@Valid AClassDto aClassDto) {
-//		return executeOperation(() -> {
-//
-//			String subject = aClassDto.getSubject();
-//			String shift = aClassDto.getShift();
-//			
-//
-//			AClass aClassOpt = aClassDao.findBySubjectShiftAndYear(subject, shift);
-//
-//			if (aClassOpt != null) {
-//				throw new ClassroomAlreadyExistsException();
-//			}
-//
-//			AClass c = aClassDao.save(aClassDto.toEntity());
-//
-//			return new AClassDto(c);
-//
-//		});
-//	}
+	@Override
+	public BusinessResult<AClassDto> saveAClass(@Valid AClassDto aClassDto) {
+		return executeOperation(() -> {
+
+			String cShift = aClassDto.getShift();
+			String cSubject = aClassDto.getSubject();
+			Integer teacherId = aClassDto.getTeacherId();
+			String cYear = aClassDto.getLectiveYear();
+
+			// Procurar aulas com mesmo subject and e turno
+
+			List<AClass> aClassOpt = aClassDao.findBySubjectYearAndShift(cSubject, cYear, cShift);
+
+			if (!aClassOpt.isEmpty()) {
+				// Se existir, fazer loop e procurar se tem o prof
+
+				if (aClassOpt != null) {
+					throw new ClassroomAlreadyExistsException();
+				}
+
+				// Se contém, então enviar excepção, já existe aula
+			}
+
+//			então gravar numa nova entidade
+
+			AClass c = aClassDao.save(aClassDto.toEntity());
+
+			return new AClassDto(c);
+
+		});
+	}
 
 }
